@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EM1 L03 — Basic Matrix Theory · 工程數學一 第三講</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🔲 EM1 L03 — Basic Matrix Theory</h1>
+    <p>矩陣基礎理論 · Engineering Maths I · Tutorial 1 of 2 (D.J. Dunn)</p>
+    <p>12 個核心觀念 + 12 幅互動矩陣原理圖 · 25 條選擇題 + 5 條矩陣計算簡答題 · Bilingual 中英對照</p>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat-item">
+      <div class="stat-value" id="timer">90:00</div>
+      <div class="stat-label">Time Left / 剩餘時間</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="answeredCount">0/25</div>
+      <div class="stat-label">Answered / 已答題數</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-value" id="scoreDisplay">-</div>
+      <div class="stat-label">Score / 測驗得分</div>
+    </div>
+    <div style="width:100%;">
+      <div class="progress-container"><div class="progress-fill" id="progressBar"></div></div>
+    </div>
+  </div>
+
+  <div class="result-panel" id="resultPanel">
+    <div class="score-circle" id="scoreCircle"><div class="score-text" id="finalScore">0%</div></div>
+    <div class="result-msg" id="resultMsg">Done!</div>
+    <div class="review-section" id="reviewSection"></div>
+    <div style="margin-top:20px;">
+      <button class="btn btn-secondary" onclick="location.reload()">Restart / 重新開始</button>
+    </div>
+  </div>
+
+  <nav class="tab-nav" id="tabNav">
+    <button class="tab-btn active" onclick="showSection('notes', this)">📚 Notes 筆記 (含矩陣圖解)</button>
+    <button class="tab-btn" onclick="showSection('part1', this)">📋 MC (25)</button>
+    <button class="tab-btn" onclick="showSection('part2', this)">✏️ Short Q (5)</button>
+  </nav>
+
+  <!-- NOTES TAB -->
+  <section id="notesSection" class="section active">
+    <div class="intro-card">
+      <h3>👋 歡迎來到工程數學一第三講！ / Welcome to Engineering Maths I — Tutorial on Matrix Theory!</h3>
+      <p>本講主題為 <strong>矩陣基礎理論 (Basic Matrix Theory)</strong>，是工程師解決大量線性聯立方程式、結構力學、電力潮流及訊號處理等問題的標準工具。內容涵蓋<strong>矩陣定義、向量與矩陣表示法、軌跡、對角矩陣、單位矩陣、零矩陣、轉置矩陣、矩陣加減、純量乘法和矩陣乘法</strong>，並以八道 Worked Example 與 Self Assessment Exercise 鞏固所學。下一講 (L04) 將延伸至<strong>行列式、逆矩陣與矩陣解方程式</strong>。</p>
+    </div>
+
+    <div class="toc">
+      <h3>📑 Table of Contents / 課題目錄</h3>
+      <ol>
+        <li><a href="#t1">What is a Matrix? / 矩陣的定義與記法</a></li>
+        <li><a href="#t2">Vectors as Matrices / 以矩陣表示向量</a></li>
+        <li><a href="#t3">Square Matrix &amp; Trace / 方陣與軌跡</a></li>
+        <li><a href="#t4">Special Matrices: Diagonal, Unit, Zero / 特殊矩陣：對角、單位、零矩陣</a></li>
+        <li><a href="#t5">Transpose Matrix Aᵀ / 轉置矩陣</a></li>
+        <li><a href="#t6">Addition &amp; Subtraction / 矩陣加減法</a></li>
+        <li><a href="#t7">Scalar Multiplication / 純量乘法</a></li>
+        <li><a href="#t8">Matrix × Column Vector / 矩陣乘向量</a></li>
+        <li><a href="#t9">Matrix × Matrix: Row × Column Rule / 矩陣乘法：行 × 列規則</a></li>
+        <li><a href="#t10">Multiplication Properties: AB ≠ BA / 矩陣乘法性質</a></li>
+        <li><a href="#t11">Unit Matrix Property: AI = A / 單位矩陣性質</a></li>
+        <li><a href="#t12">Worked Examples Recap / 八道例題總覽</a></li>
+      </ol>
+    </div>
+
+    <div id="notesContainer"></div>
+  </section>
+
+  <!-- MC TAB -->
+  <section id="part1Section" class="section">
+    <div class="intro-card">
+      <h3>📋 Multiple Choice Questions (25 題選擇題)</h3>
+      <p>題目嚴格覆蓋 Tutorial 1 of 2 所有矩陣觀念：矩陣大小 m × n、元素 a<sub>ij</sub>、軌跡、對角/單位/零/轉置矩陣、矩陣加減、純量乘法、矩陣 × 向量、矩陣 × 矩陣 (Row × Column)、AB ≠ BA、(AB)ᵀ = BᵀAᵀ、AI = A，以及八道 Worked Example 的計算結果。點選答案後點擊 <strong>Submit MC</strong> 查看成績及詳細中英題解。</p>
+    </div>
+    <div id="mcContainer"></div>
+    <div class="action-btns">
+      <button class="btn btn-success" onclick="submitMC()">Submit MC / 提交並查看成績與解釋</button>
+    </div>
+  </section>
+
+  <!-- SHORT Q TAB -->
+  <section id="part2Section" class="section">
+    <div class="intro-card">
+      <h3>✏️ Short Answer Questions (5 題矩陣計算題)</h3>
+      <p>包含矩陣加減 (Worked Example 1)、行 × 列向量內積 (Example 2)、向量長度平方 (Example 3)、3×3 矩陣乘法 (Example 6)、以及證明 (AB)ᵀ = BᵀAᵀ (Example 8)。建議在草稿紙上<strong>逐步列出每個元素的計算</strong>，再點擊按鈕查看 Model Answer 與評分要點。</p>
+    </div>
+    <div id="shortContainer"></div>
+    <div class="action-btns">
+      <button class="btn btn-primary" onclick="showAnswers()">Show All Answers / 顯示所有參考答案</button>
+    </div>
+  </section>
+</div>
+
+<button class="to-top" id="toTop" onclick="window.scrollTo({top:0, behavior:'auto'})" title="Back to top">↑</button>
+
+<script src="app.js"></script>
+</body>
+</html>
